@@ -21,6 +21,12 @@ export default class FindHeader extends BasicComponent {
             <input class="main__input--fulled main__input" placeholder="새 비밀번호 확인">
         </div>
     </div>
+    <div class="main__input-item">
+        <div class="main__input-title"></div>
+        <div class="main__input-box">
+            <a href="#" class="main__input--description">비밀번호 작성 도움말</a>
+        </div>
+    </div>
 </div>
 </div>
     <div class="main__btn-wrapper">

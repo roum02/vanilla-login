@@ -60,5 +60,10 @@ main[data-component="main__form__wrapper"] {
     .main__input-box {
       width: 100%;
     }
+    .main__input--description {
+      font-size: 12px;
+      color: #618bdf;
+      text-decoration: underline;
+    }
   }
 }

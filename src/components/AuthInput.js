@@ -24,30 +24,30 @@ export default class AuthInput extends BasicComponent {
       infoItem(id, password);
 
       // api fetching 부분
-      // {
-      //   infoItem(id, password)
-      //     ? post("auth/job-seeker/login", {
-      //         userId: id,
-      //         password: password,
-      //       })
-      //         .then((data) => {
-      //           console.log(data);
-      //           alert("개인회원으로 로그인 되었습니다. ");
-      //           infoItem(id, password);
-      //         })
-      //         .catch((error) => console.log(error))
-      //     : post("auth/company/login", {
-      //         userId: id,
-      //         password: password,
-      //         deviceToken: id,
-      //       })
-      //         .then((data) => {
-      //           console.log(data);
-      //           alert("기업회원으로 로그인 되었습니다. ");
-      //           infoItem(id, password);
-      //         })
-      //         .catch((error) => console.log(error));
-      // }
+      {
+        infoItem(id, password)
+          ? post("auth/job-seeker/login", {
+              userId: id,
+              password: password,
+            })
+              .then((data) => {
+                console.log(data);
+                alert("개인회원으로 로그인 되었습니다. ");
+                infoItem(id, password);
+              })
+              .catch((error) => console.log(error))
+          : post("auth/company/login", {
+              userId: id,
+              password: password,
+              deviceToken: id,
+            })
+              .then((data) => {
+                console.log(data);
+                alert("기업회원으로 로그인 되었습니다. ");
+                infoItem(id, password);
+              })
+              .catch((error) => console.log(error));
+      }
     });
 
     const body = document.querySelector("body");

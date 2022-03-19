@@ -90,7 +90,7 @@ export default class Login extends BasicComponent {
         password: password,
       },
     });
-    console.log(this.state);
+    console.log(this.state.info);
     return isIndividual;
   }
 
