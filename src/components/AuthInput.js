@@ -1,6 +1,6 @@
 import BasicComponent from "./BasicComponent";
 import clickBodyEvent from "../utils/clickBodyEvent";
-import { post } from "../api";
+import { handlePost } from "../api";
 
 export default class AuthInput extends BasicComponent {
   template() {
@@ -26,7 +26,7 @@ export default class AuthInput extends BasicComponent {
       // api fetching 부분
       {
         infoItem(id, password)
-          ? post("auth/job-seeker/login", {
+          ? handlePost("auth/job-seeker/login", {
               userId: id,
               password: password,
             })
@@ -36,7 +36,7 @@ export default class AuthInput extends BasicComponent {
                 infoItem(id, password);
               })
               .catch((error) => console.log(error))
-          : post("auth/company/login", {
+          : handlePost("auth/company/login", {
               userId: id,
               password: password,
               deviceToken: id,
