@@ -1,0 +1,33 @@
+@use "../abstracts/_variables.scss";
+
+footer[data-component="footer__btn-wrapper"] a {
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.footer__btn--find-id {
+  color: variables.$app__text--default;
+  &:hover {
+    color: variables.$footer__btn--hover;
+    text-decoration: underline;
+  }
+}
+
+.footer__btn--find-pw {
+  color: variables.$app__text--default;
+  margin: 0 12px;
+  padding: 0 12px;
+  border-left: 1px solid variables.$auth__input-border;
+  border-right: 1px solid variables.$auth__input-border;
+  &:hover {
+    color: variables.$footer__btn--hover;
+    text-decoration: underline;
+  }
+}
+
+.footer__btn--join-us {
+  color: variables.$footer__btn--point;
+  &:hover {
+    text-decoration: underline;
+  }
+}

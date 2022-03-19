@@ -1,0 +1,59 @@
+@use "../abstracts/_variables.scss";
+@use "../abstracts/font";
+
+.auth__input {
+  height: 46px;
+  width: 100%;
+  outline: none;
+  border: none;
+  font-size: variables.$app__font--default;
+  color: variables.$app__text--default;
+  &::placeholder {
+    color: variables.$auth__tab-font--disabled;
+  }
+}
+
+.auth__input-box {
+  border-bottom: 1px solid variables.$auth__input-border;
+}
+
+.main__input-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .main__input {
+    @extend %main__input-btn-font;
+    height: 32px;
+    border-bottom-color: variables.$main__input-border;
+    border: 1px solid silver;
+    padding: 0 0 0 10px;
+    background-color: variables.$main__input-background;
+    vertical-align: middle;
+  }
+  .main__input--fulled {
+    width: 100%;
+  }
+  .main__input-select {
+    width: 100%;
+    margin-left: 4px;
+  }
+  .main__input-btn--auth {
+    @extend %main__input-btn-font;
+
+    width: 100px;
+    height: 32px;
+    margin-left: 4px;
+    border-radius: 2px;
+    border: 1px solid variables.$main__input-btn-border;
+    background: linear-gradient(
+      180deg,
+      #fff 0,
+      variables.$main__input-btn-background
+    );
+  }
+}
+
+#main__input--certification {
+  display: none;
+}

@@ -1,0 +1,18 @@
+//base
+@use "base/base";
+
+//layout
+@use "layout/main";
+@use "layout/header";
+@use "layout/footer";
+
+//components
+@use "components/button";
+@use "components/input";
+@use "components/checkbox";
+@use "components/imgSprite";
+@use "components/footers";
+@use "components/headerMenu";
+
+//pages
+@use "pages/findMain";

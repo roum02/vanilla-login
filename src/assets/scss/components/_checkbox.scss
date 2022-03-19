@@ -1,0 +1,16 @@
+@use "../abstracts/_variables.scss";
+
+.auth__checkbox {
+  font-size: 12px;
+}
+
+.auth__security-img-wrapper {
+  font-size: 13px;
+  &:hover {
+    color: variables.$footer__btn--hover;
+  }
+}
+
+.auth__security-img-box {
+  vertical-align: middle;
+}

@@ -1,0 +1,7 @@
+@use "../abstracts/_variables.scss";
+
+header[data-component="header__logo-wrapper"] {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0 56px 0;
+}

@@ -1,0 +1,57 @@
+@use "../abstracts/_variables.scss";
+@use "../abstracts/font";
+
+.auth__tab-button {
+  border: 1px solid;
+  border-color: variables.$auth__tab-border;
+  border-bottom: 1px solid variables.$auth__tab-border--active;
+  background-color: variables.$auth__tab-background;
+  color: variables.$auth__tab-font--disabled;
+  font-weight: 700;
+  height: 48px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth__tab--active {
+  background-color: variables.$auth__tab-background--active;
+  border-color: variables.$auth__tab-border--active;
+  border-bottom: none;
+  color: variables.$auth__tab-font--bold;
+}
+
+.auth__login-btn {
+  background-color: variables.$auth__login-btn--background;
+  border: 1px solid variables.$auth__login-btn-border;
+  color: variables.$auth__login-btn-font;
+  height: 48px;
+  font-size: 16px;
+  margin-top: 40px;
+}
+
+.main__btn-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .main__btn--next {
+    @extend %header__menu-font;
+    @extend .main__btn-wrapper;
+    background-color: variables.$footer__btn--point;
+    width: 90px;
+    height: 48px;
+    border: 1px solid variables.$footer__btn--point;
+  }
+  .main__btn--cancel {
+    // @extend %header__menu-font;
+    // @extend .main__btn-wrapper;
+    // width: 90px;
+    // height: 48px;
+    @extend .main__btn--next;
+    color: #434a54 !important;
+    background-color: white;
+    border: 1px solid #adadad !important;
+    margin-right: 10px;
+  }
+}

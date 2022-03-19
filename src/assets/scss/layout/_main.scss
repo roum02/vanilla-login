@@ -1,0 +1,23 @@
+.auth__tab-wrapper {
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.auth__login-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth__checkbox-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px 0 40px 0;
+}
+
+.auth__login-sns {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  padding: 0 10px;
+}

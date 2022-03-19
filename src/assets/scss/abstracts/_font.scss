@@ -1,0 +1,36 @@
+@use "_variables.scss";
+
+%header__logo-font {
+  font-family: "Malgun Gothic", "맑은 고딕", dotum, "돋움", arial, sans-serif;
+  font-size: 23px;
+  font-weight: 400;
+  color: variables.$footer__btn--point;
+  letter-spacing: -2px;
+  line-height: 1;
+}
+
+%header__menu-font {
+  color: white;
+  font-size: 17px;
+  padding: 0 27px;
+  font-weight: 700;
+  line-height: 44px;
+}
+
+%main__form-font {
+  font-size: 16px;
+  color: variables.$app__text--default;
+  font-weight: 700;
+}
+
+%main__input-description-font {
+  color: variables.$main__input-description-font;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+%main__input-btn-font {
+  font-size: 12px;
+  color: variables.$app__text--default;
+  font-family: Gulim;
+}

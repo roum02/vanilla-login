@@ -1,0 +1,21 @@
+@import "../abstracts/_minxins.scss";
+
+.auth__login-naver {
+  @include auth__login-common(0px);
+}
+
+.auth__login-kakao {
+  @include auth__login-common(-40px);
+}
+
+.auth__login-facebook {
+  @include auth__login-common(-80px);
+}
+
+.auth__login-google {
+  @include auth__login-common(-120px);
+}
+
+.auth__login-apple {
+  @include auth__login-common(-160px);
+}
