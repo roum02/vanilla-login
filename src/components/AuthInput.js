@@ -21,9 +21,7 @@ export default class AuthInput extends BasicComponent {
     this.addEvent("click", ".auth__login-btn", () => {
       const id = document.getElementById("auth__input-id").value;
       const password = document.getElementById("auth__input-pw").value;
-      infoItem(id, password);
 
-      // api fetching 부분
       {
         infoItem(id, password)
           ? handlePost("auth/job-seeker/login", {

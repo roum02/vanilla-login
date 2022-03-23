@@ -1,5 +1,6 @@
 import BasicComponent from "./BasicComponent";
 import { historyRouterPush } from "../utils/routers";
+import { handleNoResPost } from "../api";
 
 export default class FindHeader extends BasicComponent {
   template() {
@@ -49,19 +50,25 @@ export default class FindHeader extends BasicComponent {
     <div class="main__input-item">
         <div class="main__input-title">아이디</div>
         <div class="main__input-box">
-            <input class="main__input--fulled main__input" placeholder="아이디입력">
+            <input class="main__input--fulled main__input" 
+            placeholder="아이디입력"
+            id="input__id--phone"
+            >
         </div>
     </div>
     <div class="main__input-item">
         <div class="main__input-title">이름</div>
         <div class="main__input-box">
-            <input class="main__input--fulled main__input" placeholder="가입자명">
+            <input class="main__input--fulled main__input" 
+            placeholder="가입자명"
+            id="input__name--phone"
+            >
         </div>
     </div>
     <div class="main__input-item">
         <div class="main__input-title">휴대폰번호</div>
         <div class="main__input-box">
-            <select class="main__input">
+            <select class="main__input" id="main__select--phone">
                 <option value="010">010</option>
                 <option value="011">011</option>
                 <option value="016">016</option>
@@ -69,14 +76,19 @@ export default class FindHeader extends BasicComponent {
                 <option value="018">018</option>
                 <option value="019">019</option>
             </select>
-            <input class="main__input main__input-select">
+            <input class="main__input main__input-select"
+            id="input__phone--phone"
+            >
             <button type="button" class="main__input-btn--auth">인증</button>
         </div>
     </div>
     <div class="main__input-item" id="main__input--certification">
       <div class="main__input-title">인증번호</div>
       <div class="main__input-box">
-          <input class="main__input--fulled main__input" placeholder="인증번호 6자리">
+          <input class="main__input--fulled main__input" 
+          placeholder="인증번호 6자리"
+          id="input__certification--phone"
+          >
       </div>
     </div>
 </div>
@@ -87,35 +99,79 @@ export default class FindHeader extends BasicComponent {
     `;
   }
   setEvent() {
+    const { findPasswordInfo } = this.props;
+
+    const selectList = document.getElementById("main__select--phone");
+    const selectTest = (target) => {
+      console.log(target.value);
+    };
+
     this.addEvent("click", ".main__radio--phone", (e) => {
       const pathName = e.target.getAttribute("route");
       window.history.pushState({}, pathName, window.location.origin + pathName);
       window.location.reload();
     });
 
-    this.addEvent("click", ".main__radio--email", (e) => {
+    const handleRouter = (e) => {
       const pathName = e.target.getAttribute("route");
       historyRouterPush(pathName, ".main__input-wrapper");
+    };
+
+    this.addEvent("click", ".main__radio--email", (e) => {
+      handleRouter(e);
     });
 
     this.addEvent("click", ".main__radio--mine", (e) => {
-      const pathName = e.target.getAttribute("route");
-      historyRouterPush(pathName, ".main__input-wrapper");
+      handleRouter(e);
     });
 
     this.addEvent("click", ".main__radio--ipin", (e) => {
-      const pathName = e.target.getAttribute("route");
-      historyRouterPush(pathName, ".main__input-wrapper");
+      handleRouter(e);
     });
 
     this.addEvent("click", ".main__radio--temp", (e) => {
-      const pathName = e.target.getAttribute("route");
-      historyRouterPush(pathName, ".main__input-wrapper");
+      handleRouter(e);
     });
 
     this.addEvent("click", ".main__input-btn--auth", (e) => {
+      e.preventDefault();
       let num = document.querySelector("#main__input--certification");
       num.style.display = "flex";
+
+      const currentLink = window.location.pathname;
+      let id;
+      let name;
+      let email;
+      let phone;
+      {
+        currentLink == "/findPassword"
+          ? ((id = document.getElementById("input__id--phone").value),
+            (name = document.getElementById("input__name--phone").value),
+            (phone = document.getElementById("input__phone--phone").value),
+            handleNoResPost("auth/company/check-pw-by-phone", {
+              userId: id,
+              userName: name,
+              userPhoneNumber: phone,
+            })
+              .then(() => {
+                findPasswordInfo(id, name, phone);
+              })
+              .catch((error) => console.log(error)))
+          : currentLink == "/findEmail"
+          ? ((id = document.getElementById("input__id--email").value),
+            (name = document.getElementById("input__name--email").value),
+            (email = document.getElementById("input__email--email").value),
+            handleNoResPost("auth/company/sendEmail", {
+              userId: id,
+              userName: name,
+              email: email,
+            })
+              .then(() => {
+                findPasswordInfo(id, name, email);
+              })
+              .catch((error) => console.log(error)))
+          : "";
+      }
     });
   }
 }

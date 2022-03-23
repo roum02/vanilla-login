@@ -7,6 +7,21 @@
 const host = 8080;
 const localhost = `http://localhost:${host}`;
 
+export async function handleGet(path, body) {
+  const url = `${localhost}/${path}`;
+  const options = {
+    method: "GET",
+    body: JSON.stringify(body),
+  };
+  const res = await fetch(url, options);
+  const data = await res.json();
+  if (res.ok) {
+    return data;
+  } else {
+    throw Error(data);
+  }
+}
+
 export async function handlePost(path, body, headers = {}) {
   const url = `${localhost}/${path}`;
   const options = {
@@ -21,6 +36,24 @@ export async function handlePost(path, body, headers = {}) {
   const data = await res.json();
   if (res.ok) {
     return data;
+  } else {
+    throw Error(data);
+  }
+}
+
+export async function handleNoResPost(path, body, headers = {}) {
+  const url = `${localhost}/${path}`;
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      ...headers,
+    },
+    body: JSON.stringify(body),
+  };
+  const res = await fetch(url, options);
+  if (res.ok) {
+    //console.log(res);
   } else {
     throw Error(data);
   }
