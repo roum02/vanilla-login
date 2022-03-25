@@ -40,7 +40,7 @@ export default class App extends BasicComponent {
   setEvent() {
     window.onpopstate = function (e) {
       //history.back();
-      //window.location.reload();
+      window.location.reload();
       //console.log("뒤로 감");
     };
   }

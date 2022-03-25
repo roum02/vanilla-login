@@ -1,6 +1,6 @@
 import BasicComponent from "./BasicComponent";
 import { historyRouterPush } from "../utils/routers";
-import { handleNoResPost } from "../api";
+import { handleNoResPost, handlePost } from "../api";
 
 export default class FindHeader extends BasicComponent {
   template() {
@@ -52,8 +52,7 @@ export default class FindHeader extends BasicComponent {
         <div class="main__input-box">
             <input class="main__input--fulled main__input" 
             placeholder="아이디입력"
-            id="input__id--phone"
-            >
+            id="input__id--phone">
         </div>
     </div>
     <div class="main__input-item">
@@ -100,11 +99,7 @@ export default class FindHeader extends BasicComponent {
   }
   setEvent() {
     const { findPasswordInfo } = this.props;
-
-    const selectList = document.getElementById("main__select--phone");
-    const selectTest = (target) => {
-      console.log(target.value);
-    };
+    let currentLink;
 
     this.addEvent("click", ".main__radio--phone", (e) => {
       const pathName = e.target.getAttribute("route");
@@ -115,6 +110,8 @@ export default class FindHeader extends BasicComponent {
     const handleRouter = (e) => {
       const pathName = e.target.getAttribute("route");
       historyRouterPush(pathName, ".main__input-wrapper");
+      currentLink = pathName;
+      //console.log(currentLink);
     };
 
     this.addEvent("click", ".main__radio--email", (e) => {
@@ -131,47 +128,6 @@ export default class FindHeader extends BasicComponent {
 
     this.addEvent("click", ".main__radio--temp", (e) => {
       handleRouter(e);
-    });
-
-    this.addEvent("click", ".main__input-btn--auth", (e) => {
-      e.preventDefault();
-      let num = document.querySelector("#main__input--certification");
-      num.style.display = "flex";
-
-      const currentLink = window.location.pathname;
-      let id;
-      let name;
-      let email;
-      let phone;
-      {
-        currentLink == "/findPassword"
-          ? ((id = document.getElementById("input__id--phone").value),
-            (name = document.getElementById("input__name--phone").value),
-            (phone = document.getElementById("input__phone--phone").value),
-            handleNoResPost("auth/company/check-pw-by-phone", {
-              userId: id,
-              userName: name,
-              userPhoneNumber: phone,
-            })
-              .then(() => {
-                findPasswordInfo(id, name, phone);
-              })
-              .catch((error) => console.log(error)))
-          : currentLink == "/findEmail"
-          ? ((id = document.getElementById("input__id--email").value),
-            (name = document.getElementById("input__name--email").value),
-            (email = document.getElementById("input__email--email").value),
-            handleNoResPost("auth/company/sendEmail", {
-              userId: id,
-              userName: name,
-              email: email,
-            })
-              .then(() => {
-                findPasswordInfo(id, name, email);
-              })
-              .catch((error) => console.log(error)))
-          : "";
-      }
     });
   }
 }
