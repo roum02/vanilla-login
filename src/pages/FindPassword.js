@@ -40,9 +40,9 @@ export default class FindPassword extends BasicComponent {
       '[data-component="header__wrapper"]'
     );
 
-    const currentLink = window.location.pathname;
     const formInput = this.target.querySelector(".form__input");
     const authTabWrapper = this.target.querySelector(".auth__tab-wrapper");
+    const currentLink = window.location.pathname;
 
     {
       currentLink == "/findPassword"
@@ -96,6 +96,9 @@ export default class FindPassword extends BasicComponent {
   }
 
   setEvent() {
+    const { findPasswordInfo } = this.state;
+    let idx;
+
     this.addEvent("click", ".main__input-btn--auth", (e) => {
       e.preventDefault();
       let num = document.querySelector("#main__input--certification");
@@ -106,7 +109,7 @@ export default class FindPassword extends BasicComponent {
       let name;
       let email;
       let phone;
-      let idx;
+      //let idx;
       {
         currentLink == "/findPassword"
           ? ((id = document.getElementById("input__id--phone").value),
@@ -127,14 +130,17 @@ export default class FindPassword extends BasicComponent {
             (name = document.getElementById("input__name--email").value),
             (email = document.getElementById("input__email--email").value),
             handlePost("auth/company/sendEmail", {
-              userId: id,
-              userName: name,
-              email: email,
+              // userId: id,
+              // userName: name,
+              // email: email,
+              userId: "company5",
+              userName: "company5",
+              email: "dmswl7850@gmail.com",
             })
               .then((data) => {
                 console.log(data);
+                idx = data.data.id;
                 //findPasswordInfo(id, name, email);
-                //console.log(findPasswordInfo);
               })
               .catch((error) => console.log(error)))
           : "";
@@ -144,6 +150,7 @@ export default class FindPassword extends BasicComponent {
     this.addEvent("click", ".main__btn--next", (e) => {
       const currentLink = window.location.pathname;
       const pathName = e.target.getAttribute("route"); //newpassword
+
       currentLink == "/findPassword"
         ? handleNoResPost(
             "auth/common/check/sendSMS",
@@ -166,12 +173,17 @@ export default class FindPassword extends BasicComponent {
               .catch((error) => console.log(error))
           )
         : currentLink == "/findEmail"
-        ? (handleNoResPost("auth/common/check/sendEmail", {
-            //email: "dmswl7850@gmail.com",
-            email: document.getElementById("input__email--email").value,
+        ? handleNoResPost("auth/common/check/sendEmail", {
+            email: "dmswl7850@gmail.com",
+            //email: document.getElementById("input__email--email").value,
             code: document.getElementById("input__certification--email").value,
           })
             .then(() => {
+              this.setState({
+                findPasswordInfo: {
+                  idx: idx,
+                },
+              });
               window.history.pushState(
                 {},
                 pathName,
@@ -179,8 +191,7 @@ export default class FindPassword extends BasicComponent {
               );
               window.location.reload();
             })
-            .catch((error) => console.log(error)),
-          console.log(this.state.findPasswordInfo))
+            .catch((error) => console.log(error))
         : "";
     });
   }
