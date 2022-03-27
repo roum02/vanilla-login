@@ -1,14 +1,21 @@
 import BasicComponent from "../components/BasicComponent";
 import FindHeader from "../components/FindHeader";
 import FindForm from "../components/FindForm";
-import FindNewPassword from "../components/FindNewPassword";
 import ChoiceBtn from "../components/ChoiceBtn";
 import handleTabClass from "../utils/handleTabClass";
+import { handleNoResPost, handlePost } from "../api";
 
 export default class FindPassword extends BasicComponent {
   setup() {
     this.state = {
       isIndividual: true,
+      findPasswordInfo: {
+        id: "",
+        name: "",
+        phone: "",
+        email: "",
+        idx: "",
+      },
     };
   }
 
@@ -27,34 +34,46 @@ export default class FindPassword extends BasicComponent {
         `;
   }
   mounted() {
-    const { tabBtnTrue, tabBtnFalse } = this;
+    const { tabBtnTrue, tabBtnFalse, findPasswordInfo } = this;
     const headerWrapper = this.target.querySelector(
       '[data-component="header__wrapper"]'
     );
 
-    const currentLink = window.location.pathname;
     const formInput = this.target.querySelector(".form__input");
     const authTabWrapper = this.target.querySelector(".auth__tab-wrapper");
+    const currentLink = window.location.pathname;
 
-    {
-      currentLink == "/findPassword"
-        ? new FindForm(formInput, {})
-        : new FindNewPassword(formInput, {});
-    }
+    // {
+    //   currentLink == "/findPassword"
+    //     ? new FindForm(formInput, {
+    //         findPasswordInfo: findPasswordInfo.bind(this),
+    //       })
+    //     : currentLink == "/newPassword"
+    //     ? new FindNewPassword(formInput, {
+    //         findPasswordInfo: findPasswordInfo.bind(this),
+    //       })
+    //     : "";
+    // }
+
+    new FindForm(formInput, {
+      findPasswordInfo: findPasswordInfo.bind(this),
+    });
 
     new FindHeader(headerWrapper, {});
     new ChoiceBtn(authTabWrapper, {
       tabBtnTrue: tabBtnTrue.bind(this),
       tabBtnFalse: tabBtnFalse.bind(this),
     });
+    window.onload = function () {
+      document.getElementById("individual").className =
+        "auth__tab-button auth__tab--active";
+    };
   }
   tabBtnTrue() {
     let { isIndividual } = this.state;
     this.setState({
       isIndividual: true,
     });
-    //isIndividual = this.state;
-    //handleTabImage(this.state.isIndividual);
     handleTabClass("individual");
   }
 
@@ -63,15 +82,20 @@ export default class FindPassword extends BasicComponent {
     this.setState({
       isIndividual: false,
     });
-    //handleTabImage(this.state.isIndividual);
     handleTabClass("enterprise");
   }
 
-  setEvent() {
-    this.addEvent("click", ".main__btn--next", (e) => {
-      const pathName = e.target.getAttribute("route");
-      window.history.pushState({}, pathName, window.location.origin + pathName);
-      window.location.reload();
+  findPasswordInfo(id, name, phone, email, idx) {
+    const { findPasswordInfo } = this.state;
+    this.setState({
+      findPasswordInfo: {
+        id: id,
+        name: name,
+        phone: phone,
+        email: email,
+        idx: idx,
+      },
     });
+    console.log(this.state.findPasswordInfo);
   }
 }

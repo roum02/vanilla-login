@@ -44,14 +44,42 @@
     border: 1px solid variables.$footer__btn--point;
   }
   .main__btn--cancel {
-    // @extend %header__menu-font;
-    // @extend .main__btn-wrapper;
-    // width: 90px;
-    // height: 48px;
     @extend .main__btn--next;
     color: #434a54 !important;
     background-color: white;
     border: 1px solid #adadad !important;
     margin-right: 10px;
+  }
+  .main__btn--complete {
+    @extend .main__btn--next;
+  }
+}
+
+.main__content-btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .main__content-btn--complete {
+    margin: 0 5px;
+    width: 240px;
+    padding: 12px 0 15px;
+    text-align: center;
+    font: 700 16px Malgun Gothic, "\B9D1\C740 \ACE0\B515", dotum, "\B3CB\C6C0",
+      sans-serif;
+    color: #fff;
+    letter-spacing: -0.5px;
+    background-color: #f63;
+    border-radius: 4px;
+    margin-top: 52px;
+  }
+
+  .main__content-btn--cancle {
+    font-size: 15px;
+    line-height: 20px;
+    color: rgb(170, 170, 165);
+    font-family: "Malgun Gothic", "맑은 고딕";
+    text-decoration: underline;
+    margin-top: 30px;
   }
 }

@@ -2,11 +2,12 @@ import BasicComponent from "./BasicComponent";
 
 export default class FindHeader extends BasicComponent {
   template() {
+    let title = "회원가입";
     return `
       <div class="header__wrapper">
         <h1><span class="header__img-wrapper">
         <img src="https://contents.albamon.kr/monimg/gnb/bi/h_logo.png" alt="logo">
-        </span>회원가입</h1>
+        </span>${title}</h1>
         <ul class="header__menu-wrapper">
             <li class=""><a>홈</a></li>
             <li><a>채용정보</a></li>

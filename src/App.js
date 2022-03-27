@@ -2,7 +2,6 @@ import "../src/assets/scss/main.scss";
 import BasicComponent from "./components/BasicComponent";
 import Login from "./pages/Login";
 import FindPassword from "./pages/FindPassword";
-import FindNewPassword from "./components/FindNewPassword";
 import { saveLogin, getLogin } from "./utils/cookies";
 
 export default class App extends BasicComponent {
@@ -19,7 +18,11 @@ export default class App extends BasicComponent {
     {
       currentLink == "/"
         ? new Login(routerPage, {})
-        : new FindPassword(routerPage, {});
+        : currentLink == "/findPassword"
+        ? new FindPassword(routerPage, {})
+        : // : currentLink == "/mainPage"
+          // ? new MainPage(routerPage, {})
+          new FindPassword(routerPage, {});
     }
 
     const passwordBtn = this.target.querySelector(".footer__btn--find-pw");
@@ -41,7 +44,6 @@ export default class App extends BasicComponent {
     window.onpopstate = function (e) {
       //history.back();
       window.location.reload();
-      console.log("뒤로 감");
     };
   }
 }
