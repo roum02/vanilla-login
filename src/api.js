@@ -45,8 +45,8 @@ export async function handleNoResPost(path, body, headers = {}) {
   }
 }
 
-export async function handlePut(id, body, headers = {}) {
-  const url = `${localhost}/auth/common/user/${id}/password`;
+export async function handlePut(path, body, headers = {}) {
+  const url = `${localhost}/${path}`;
   const options = {
     method: "PUT",
     headers: {

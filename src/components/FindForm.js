@@ -172,9 +172,6 @@ export default class FindHeader extends BasicComponent {
               userId: id,
               userName: name,
               email: email,
-              // userId: "company5",
-              // userName: "company5",
-              // email: "dmswl7850@gmail.com",
             })
               .then((data) => {
                 alert(
@@ -203,7 +200,6 @@ export default class FindHeader extends BasicComponent {
               phoneNumber: `010${
                 document.getElementById("input__phone--phone").value
               }`,
-              //phoneNumber: "01054002028",
               code: document.getElementById("input__certification--phone")
                 .value,
             }
@@ -218,8 +214,6 @@ export default class FindHeader extends BasicComponent {
           )
         : currentLink == "/findEmail"
         ? handleNoResPost("auth/common/check/sendEmail", {
-            // email: "dmswl7850@gmail.com",
-            // code: "crSXh23L",
             email: document.getElementById("input__email--email").value,
             code: document.getElementById("input__certification--email").value,
           })
@@ -243,7 +237,7 @@ export default class FindHeader extends BasicComponent {
       ).value;
       {
         newPassword == confirmPassword
-          ? handlePut(idx, {
+          ? handlePut(`auth/common/user/${idx}/password`, {
               password: newPassword,
               checkPassword: confirmPassword,
             })
