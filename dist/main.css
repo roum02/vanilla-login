@@ -69,7 +69,7 @@ footer[data-component=footer__wrapper] {
   line-height: 1;
 }
 
-.header__menu--find li, .main__btn-wrapper .main__btn--next, .main__btn-wrapper .main__btn--cancel {
+.header__menu--find li, .main__btn-wrapper .main__btn--next, .main__btn-wrapper .main__btn--cancel, .main__btn-wrapper .main__btn--complete {
   color: white;
   font-size: 17px;
   padding: 0 27px;
@@ -77,7 +77,7 @@ footer[data-component=footer__wrapper] {
   line-height: 44px;
 }
 
-main[data-component=main__form__wrapper] .main__input-form .main__input-title {
+.main__input-form .main__input-title {
   font-size: 16px;
   color: #494949;
   font-weight: 700;
@@ -125,12 +125,12 @@ main[data-component=main__form__wrapper] .main__input-description {
   margin-top: 40px;
 }
 
-.main__btn-wrapper, .main__btn-wrapper .main__btn--next, .main__btn-wrapper .main__btn--cancel {
+.main__btn-wrapper, .main__btn-wrapper .main__btn--next, .main__btn-wrapper .main__btn--complete, .main__btn-wrapper .main__btn--cancel {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.main__btn-wrapper .main__btn--next, .main__btn-wrapper .main__btn--cancel {
+.main__btn-wrapper .main__btn--next, .main__btn-wrapper .main__btn--complete, .main__btn-wrapper .main__btn--cancel {
   background-color: #ff6633;
   width: 90px;
   height: 48px;
@@ -141,6 +141,32 @@ main[data-component=main__form__wrapper] .main__input-description {
   background-color: white;
   border: 1px solid #adadad !important;
   margin-right: 10px;
+}
+.main__content-btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.main__content-btn-wrapper .main__content-btn--complete {
+  margin: 0 5px;
+  width: 240px;
+  padding: 12px 0 15px;
+  text-align: center;
+  font: 700 16px Malgun Gothic, "맑은고딕", dotum, "돋움", sans-serif;
+  color: #fff;
+  letter-spacing: -0.5px;
+  background-color: #f63;
+  border-radius: 4px;
+  margin-top: 52px;
+}
+.main__content-btn-wrapper .main__content-btn--cancle {
+  font-size: 15px;
+  line-height: 20px;
+  color: #aaaaa5;
+  font-family: "Malgun Gothic", "맑은 고딕";
+  text-decoration: underline;
+  margin-top: 30px;
 }
 
 .auth__input {
@@ -323,6 +349,12 @@ footer[data-component=footer__btn-wrapper] a {
   background-color: #d74b16;
 }
 
+.header__line {
+  width: 100%;
+  border-bottom: 5px solid #ff6633;
+  margin-bottom: 48px;
+}
+
 main[data-component=main__form__wrapper] {
   display: flex;
   justify-content: center;
@@ -357,7 +389,8 @@ main[data-component=main__form__wrapper] .main__input-description {
   padding: 24px 0;
   text-align: center;
 }
-main[data-component=main__form__wrapper] .main__input-form {
+
+.main__input-form {
   border-bottom: 1px solid #dfe2e8;
   padding: 25px 50px;
   margin-bottom: 40px;
@@ -365,23 +398,41 @@ main[data-component=main__form__wrapper] .main__input-form {
   flex-direction: column;
   align-items: center;
 }
-main[data-component=main__form__wrapper] .main__input-form .main__input-item {
+.main__input-form .main__input-item {
   display: flex;
   align-items: center;
   width: 100%;
   margin-bottom: 10px;
 }
-main[data-component=main__form__wrapper] .main__input-form .main__input-item:last-child {
+.main__input-form .main__input-item:last-child {
   margin-bottom: 0px;
 }
-main[data-component=main__form__wrapper] .main__input-form .main__input-title {
+.main__input-form .main__input-title {
   width: 220px;
 }
-main[data-component=main__form__wrapper] .main__input-form .main__input-box {
+.main__input-form .main__input-box {
   width: 100%;
 }
-main[data-component=main__form__wrapper] .main__input-form .main__input--description {
+.main__input-form .main__input--description {
   font-size: 12px;
   color: #618bdf;
   text-decoration: underline;
+}
+
+.main__content-title {
+  font: 36px Malgun Gothic, "맑은고딕", dotum, "돋움", sans-serif;
+  color: #222;
+  text-align: center;
+  padding-bottom: 40px;
+  letter-spacing: -0.8px;
+}
+.main__content-title .main__content-title--color {
+  color: #ff6633;
+}
+
+.main__content-subtitle {
+  font: 18px Malgun Gothic, "맑은고딕", dotum, "돋움", sans-serif;
+  color: #888;
+  text-align: center;
+  letter-spacing: -0.8px;
 }

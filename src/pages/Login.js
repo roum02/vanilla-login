@@ -25,18 +25,20 @@ export default class Login extends BasicComponent {
 
   template() {
     return `
-    <div class="body__login-wrapper">
-      <header data-component="header__logo-wrapper"></header>
-      <main data-component="auth__wrapper">
-          <div class="auth__tab-wrapper"></div>
-          <div class="auth__login-wrapper"></div>
-          <div class="auth__checkbox-wrapper">
-                  <div class="auth__checkbox"></div>
-                  <div class="auth__security-img-wrapper">IP보안<span class="auth__security-img-box"></span></div>
-          </div>
-          <ul class="auth__login-sns"></ul>  
-      </main>
-      <footer data-component="footer__btn-wrapper"></footer>
+    <div class="body__mainpage-wrapper">
+      <div class="body__login-wrapper">
+        <header data-component="header__logo-wrapper"></header>
+        <main data-component="auth__wrapper">
+            <div class="auth__tab-wrapper"></div>
+            <div class="auth__login-wrapper"></div>
+            <div class="auth__checkbox-wrapper">
+                    <div class="auth__checkbox"></div>
+                    <div class="auth__security-img-wrapper">IP보안<span class="auth__security-img-box"></span></div>
+            </div>
+            <ul class="auth__login-sns"></ul>  
+        </main>
+        <footer data-component="footer__btn-wrapper"></footer>
+      </div>
     </div>
       `;
   }

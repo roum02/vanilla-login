@@ -45,3 +45,9 @@
     }
   }
 }
+
+.header__line {
+  width: 100%;
+  border-bottom: 5px solid variables.$auth__login-btn--background;
+  margin-bottom: 48px;
+}

@@ -1,0 +1,24 @@
+@use "../abstracts/variables";
+@use "../abstracts/font";
+
+.main__content-title {
+  font: 36px Malgun Gothic, "\B9D1\C740 \ACE0\B515", dotum, "\B3CB\C6C0",
+    sans-serif;
+  color: #222;
+  text-align: center;
+  padding-bottom: 40px;
+  letter-spacing: -0.8px;
+
+  .main__content-title--color {
+    color: variables.$auth__login-btn--background;
+  }
+}
+
+.main__content-subtitle {
+  font: 18px Malgun Gothic, "\B9D1\C740 \ACE0\B515", dotum, "\B3CB\C6C0",
+    sans-serif;
+  color: #888;
+  text-align: center;
+  letter-spacing: -0.8px;
+  margin-bottom: 50px;
+}

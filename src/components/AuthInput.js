@@ -18,6 +18,41 @@ export default class AuthInput extends BasicComponent {
 
   setEvent() {
     const { infoItem } = this.props;
+    const headerHTML = `
+    <div class="header__wrapper">
+        <h1><span class="header__img-wrapper">
+        <img src="https://contents.albamon.kr/monimg/gnb/bi/h_logo.png" alt="logo">
+        </span></h1>
+        <ul class="header__menu-wrapper">
+            <li class=""><a>홈</a></li>
+            <li><a>채용정보</a></li>
+            <li><a>인재정보</li>
+            <li><a>알바토크</a></li>
+            <li><a>FAQ</a></li>
+            <li><a>캠페인</a></li>
+        </ul>
+    </div>
+    <div class="header__line"></div>
+    `;
+    const contentHTML = `
+    <p class="main__content-subtitle">
+    별명을 바꾸고 싶다면 아래 버튼을
+    클릭해주세요.</p>
+    <div class="main__input-description">
+      <div class="main__input-item">
+        <div class="main__input-title">별명</div>
+        <div class="main__input-box">
+            <input class="main__input--fulled main__input" 
+            placeholder="별명입력"
+            id="input__id--nickname">
+        </div>
+      </div>
+    </div>
+    <div class="main__content-btn-wrapper">
+      <div class="main__content-btn--complete">별명 바꾸기</div> 
+      <div class="main__content-btn--cancle">다음에 할래요</div>
+    </div>
+    `;
 
     this.addEvent("click", ".auth__login-btn", (e) => {
       const id = document.getElementById("auth__input-id").value;
@@ -36,18 +71,18 @@ export default class AuthInput extends BasicComponent {
                 const nickname = data.data.nickname;
                 alert("개인회원으로 로그인 되었습니다. ");
                 infoItem(id, password, idx);
-                historyRouterPush(pathName, ".body__login-wrapper");
-                // window.history.pushState(
-                //   {},
-                //   pathName,
-                //   window.location.origin + pathName
-                // );
-                // document.querySelector(".body__login-wrapper").innerHTML = `
-                // <div>${nickname}님, <br /> 환영합니다!</div>
-                // <p>별명을 바꾸고 싶다면 아래 버튼을
-                // 클릭해주세요</p>
-                // <div>별명 바꾸기</div> <div>다음에 할래요</div>
-                // `;
+                window.history.pushState(
+                  {},
+                  pathName,
+                  window.location.origin + pathName
+                );
+                document.querySelector(".body__mainpage-wrapper").innerHTML = `
+                ${headerHTML}
+                <div class="main__content-title">
+                <span class="main__content-title--color">${nickname}</span>님, 
+                <br /> 환영합니다!</div>
+                ${contentHTML}
+                `;
               })
               .catch((error) => console.log(error))
           : handlePost("auth/company/login", {
