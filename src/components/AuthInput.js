@@ -32,9 +32,22 @@ export default class AuthInput extends BasicComponent {
             })
               .then((data) => {
                 console.log(data);
+                const idx = data.data.id;
+                const nickname = data.data.nickname;
                 alert("개인회원으로 로그인 되었습니다. ");
-                infoItem(id, password, data.data.id);
+                infoItem(id, password, idx);
                 historyRouterPush(pathName, ".body__login-wrapper");
+                // window.history.pushState(
+                //   {},
+                //   pathName,
+                //   window.location.origin + pathName
+                // );
+                // document.querySelector(".body__login-wrapper").innerHTML = `
+                // <div>${nickname}님, <br /> 환영합니다!</div>
+                // <p>별명을 바꾸고 싶다면 아래 버튼을
+                // 클릭해주세요</p>
+                // <div>별명 바꾸기</div> <div>다음에 할래요</div>
+                // `;
               })
               .catch((error) => console.log(error))
           : handlePost("auth/company/login", {
