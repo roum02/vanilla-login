@@ -129,5 +129,100 @@ export default class FindHeader extends BasicComponent {
     this.addEvent("click", ".main__radio--temp", (e) => {
       handleRouter(e);
     });
+
+    let idx;
+
+    this.addEvent("click", ".main__input-btn--auth", (e) => {
+      e.preventDefault();
+      let num = document.querySelector("#main__input--certification");
+      num.style.display = "flex";
+      const currentLink = window.location.pathname;
+
+      let id;
+      let name;
+      let email;
+      let phone;
+      //let idx;
+      {
+        currentLink == "/findPassword"
+          ? ((id = document.getElementById("input__id--phone").value),
+            (name = document.getElementById("input__name--phone").value),
+            (phone = document.getElementById("input__phone--phone").value),
+            handlePost("auth/company/check-pw-by-phone", {
+              userId: id,
+              userName: name,
+              userPhoneNumber: `010${phone}`,
+            })
+              .then((data) => {
+                idx = data.data.id;
+                //findPasswordInfo(id, name, phone, idx);
+              })
+              .catch((error) => console.log(error)))
+          : currentLink == "/findEmail"
+          ? ((id = document.getElementById("input__id--email").value),
+            (name = document.getElementById("input__name--email").value),
+            (email = document.getElementById("input__email--email").value),
+            handlePost("auth/company/sendEmail", {
+              // userId: id,
+              // userName: name,
+              // email: email,
+              userId: "company5",
+              userName: "company5",
+              email: "dmswl7850@gmail.com",
+            })
+              .then((data) => {
+                console.log(data);
+                idx = data.data.id;
+                //findPasswordInfo(id, name, email);
+              })
+              .catch((error) => console.log(error)))
+          : "";
+      }
+    });
+
+    this.addEvent("click", ".main__btn--next", (e) => {
+      const currentLink = window.location.pathname;
+      const pathName = e.target.getAttribute("route");
+
+      currentLink == "/findPassword"
+        ? handleNoResPost(
+            "auth/common/check/sendSMS",
+            {
+              phoneNumber: `010${
+                document.getElementById("input__phone--phone").value
+              }`,
+              //phoneNumber: "01054002028",
+              code: document.getElementById("input__certification--phone")
+                .value,
+            }
+              .then(() => {
+                window.history.pushState(
+                  {},
+                  pathName,
+                  window.location.origin + pathName
+                );
+                window.location.reload();
+              })
+              .catch((error) => console.log(error))
+          )
+        : currentLink == "/findEmail"
+        ? handleNoResPost("auth/common/check/sendEmail", {
+            email: "dmswl7850@gmail.com",
+            code: "crSXh23L",
+            //email: document.getElementById("input__email--email").value,
+            //code: document.getElementById("input__certification--email").value,
+          })
+            .then(() => {
+              findPasswordInfo(idx);
+              window.history.pushState(
+                {},
+                pathName,
+                window.location.origin + pathName
+              );
+              window.location.reload();
+            })
+            .catch((error) => console.log(error))
+        : "";
+    });
   }
 }

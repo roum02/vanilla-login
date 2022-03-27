@@ -24,7 +24,7 @@ export default class App extends BasicComponent {
         ? new FindPassword(routerPage, {})
         : currentLink == "/mainPage"
         ? new MainPage(routerPage, {})
-        : "";
+        : new FindPassword(routerPage, {});
     }
 
     const passwordBtn = this.target.querySelector(".footer__btn--find-pw");

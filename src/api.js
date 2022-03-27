@@ -38,7 +38,7 @@ export async function handleNoResPost(path, body, headers = {}) {
   };
   const res = await fetch(url, options);
   if (res.ok) {
-    console.log(res.ok);
+    //console.log(res.ok);
     return res.ok;
   } else {
     throw Error();

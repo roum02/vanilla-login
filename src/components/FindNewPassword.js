@@ -36,8 +36,9 @@ export default class FindHeader extends BasicComponent {
     </div>
     `;
   }
+
   setEvent() {
-    // const { findPasswordInfo } = this.props;
+    //const { findPasswordInfo } = this.props;
     // console.log(findPasswordInfo);
   }
 }
