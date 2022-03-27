@@ -64,13 +64,16 @@ export default class FindPassword extends BasicComponent {
       tabBtnTrue: tabBtnTrue.bind(this),
       tabBtnFalse: tabBtnFalse.bind(this),
     });
+    window.onload = function () {
+      document.getElementById("individual").className =
+        "auth__tab-button auth__tab--active";
+    };
   }
   tabBtnTrue() {
     let { isIndividual } = this.state;
     this.setState({
       isIndividual: true,
     });
-    //handleTabImage(this.state.isIndividual);
     handleTabClass("individual");
   }
 
@@ -79,7 +82,6 @@ export default class FindPassword extends BasicComponent {
     this.setState({
       isIndividual: false,
     });
-    //handleTabImage(this.state.isIndividual);
     handleTabClass("enterprise");
   }
 
@@ -95,9 +97,5 @@ export default class FindPassword extends BasicComponent {
       },
     });
     console.log(this.state.findPasswordInfo);
-  }
-
-  setEvent() {
-    const { findPasswordInfo } = this.state;
   }
 }

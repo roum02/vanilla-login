@@ -115,7 +115,6 @@ export default class Login extends BasicComponent {
     this.setState({
       isIndividual: true,
     });
-    //isIndividual = this.state;
     handleTabImage(this.state.isIndividual);
     handleTabClass("individual");
   }

@@ -3,7 +3,6 @@ import BasicComponent from "./components/BasicComponent";
 import Login from "./pages/Login";
 import FindPassword from "./pages/FindPassword";
 import { saveLogin, getLogin } from "./utils/cookies";
-import MainPage from "./pages/MainPage";
 
 export default class App extends BasicComponent {
   template() {
