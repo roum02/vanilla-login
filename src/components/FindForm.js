@@ -146,7 +146,7 @@ export default class FindHeader extends BasicComponent {
           ? ((id = document.getElementById("input__id--phone").value),
             (name = document.getElementById("input__name--phone").value),
             (phone = document.getElementById("input__phone--phone").value),
-            handlePost("auth/company/check-pw-by-phone", {
+            handlePost("auth/job-seeker/check-pw-by-phone", {
               userId: id,
               userName: name,
               userPhoneNumber: `010${phone}`,
@@ -168,7 +168,7 @@ export default class FindHeader extends BasicComponent {
           ? ((id = document.getElementById("input__id--email").value),
             (name = document.getElementById("input__name--email").value),
             (email = document.getElementById("input__email--email").value),
-            handlePost("auth/company/sendEmail", {
+            handlePost("auth/job-seeker/sendEmail", {
               userId: id,
               userName: name,
               email: email,

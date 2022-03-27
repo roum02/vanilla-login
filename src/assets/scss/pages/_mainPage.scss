@@ -23,6 +23,11 @@
   margin-bottom: 50px;
 }
 
-.form-width {
-  max-width: 620px;
+.main__form--center {
+  display: flex;
+  justify-content: center;
+  .form-width {
+    width: 620px;
+    padding-right: 50px;
+  }
 }

@@ -38,14 +38,16 @@ export default class AuthInput extends BasicComponent {
     <p class="main__content-subtitle">
     별명을 바꾸고 싶다면 아래 버튼을
     클릭해주세요.</p>
-    <div class="main__input-description form-width">
-        <div class="main__input-item">
-          <div class="main__input-title">별명</div>
-          <div class="main__input-box">
-              <input class="main__input--fulled main__input" 
-              placeholder="별명입력"
-              id="input__id--nickname">
-          </div>
+    <div class="main__form--center">
+      <div class="main__input-description form-width">
+          <div class="main__input-item">
+            <div class="main__input-title">별명</div>
+            <div class="main__input-box">
+                <input class="main__input--fulled main__input" 
+                placeholder="별명입력"
+                id="input__id--nickname">
+            </div>
+        </div>
       </div>
     </div>
     <div class="main__content-btn-wrapper">
@@ -94,8 +96,24 @@ export default class AuthInput extends BasicComponent {
             })
               .then((data) => {
                 console.log(data);
+                const idx = data.data.id;
+                const nickname = data.data.nickname;
+                const accessToken = data.data.accessToken;
+                const refreshToken = data.data.refreshToken;
                 alert("기업회원으로 로그인 되었습니다. ");
-                infoItem(id, password, data.data.id);
+                infoItem(id, password, idx, accessToken, refreshToken);
+                window.history.pushState(
+                  {},
+                  pathName,
+                  window.location.origin + pathName
+                );
+                document.querySelector(".body__mainpage-wrapper").innerHTML = `
+                ${headerHTML}
+                <div class="main__content-title">
+                <span class="main__content-title--color">${nickname}</span>님, 
+                <br /> 환영합니다!</div>
+                ${contentHTML}
+                `;
               })
               .catch((error) => console.log(error));
       }
