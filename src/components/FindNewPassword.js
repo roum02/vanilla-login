@@ -37,29 +37,7 @@ export default class FindHeader extends BasicComponent {
     `;
   }
   setEvent() {
-    this.addEvent("click", ".main__btn--complete", () => {
-      const newPassword = document.getElementById(
-        "main__input--new-password"
-      ).value;
-      const confirmPassword = document.getElementById(
-        "main__input--confirm-password"
-      ).value;
-
-      {
-        newPassword == confirmPassword
-          ? handlePut(5, {
-              password: newPassword,
-              checkPassword: confirmPassword,
-            })
-              .then((data) => {
-                console.log(data);
-                alert("비밀번호 변경이 완료되었습니다.");
-              })
-              .catch((error) => console.log(error))
-          : alert(
-              "비밀번호가 일치하지 않습니다. 다시 한번 확인 후 비밀번호를 입력해 주세요."
-            );
-      }
-    });
+    // const { findPasswordInfo } = this.props;
+    // console.log(findPasswordInfo);
   }
 }

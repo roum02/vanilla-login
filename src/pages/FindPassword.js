@@ -50,12 +50,11 @@ export default class FindPassword extends BasicComponent {
             findPasswordInfo: findPasswordInfo.bind(this),
           })
         : currentLink == "/newPassword"
-        ? new FindNewPassword(formInput, {})
+        ? new FindNewPassword(formInput, {
+            findPasswordInfo: findPasswordInfo.bind(this),
+          })
         : "";
     }
-
-    //임시
-    //new FindForm(formInput, { findPasswordInfo: findPasswordInfo.bind(this) });
 
     new FindHeader(headerWrapper, {});
     new ChoiceBtn(authTabWrapper, {
@@ -149,7 +148,7 @@ export default class FindPassword extends BasicComponent {
 
     this.addEvent("click", ".main__btn--next", (e) => {
       const currentLink = window.location.pathname;
-      const pathName = e.target.getAttribute("route"); //newpassword
+      const pathName = e.target.getAttribute("route");
 
       currentLink == "/findPassword"
         ? handleNoResPost(
@@ -175,8 +174,9 @@ export default class FindPassword extends BasicComponent {
         : currentLink == "/findEmail"
         ? handleNoResPost("auth/common/check/sendEmail", {
             email: "dmswl7850@gmail.com",
+            code: "crSXh23L",
             //email: document.getElementById("input__email--email").value,
-            code: document.getElementById("input__certification--email").value,
+            //code: document.getElementById("input__certification--email").value,
           })
             .then(() => {
               this.setState({
@@ -184,6 +184,7 @@ export default class FindPassword extends BasicComponent {
                   idx: idx,
                 },
               });
+              // console.log(this.state.findPasswordInfo);
               window.history.pushState(
                 {},
                 pathName,
@@ -191,8 +192,35 @@ export default class FindPassword extends BasicComponent {
               );
               window.location.reload();
             })
-            .catch((error) => console.log(error))
+            .catch(
+              (error) => console.log(error)
+              //console.log(this.state.findPasswordInfo)
+            )
         : "";
+    });
+
+    this.addEvent("click", ".main__btn--complete", (e) => {
+      const newPassword = document.getElementById(
+        "main__input--new-password"
+      ).value;
+      const confirmPassword = document.getElementById(
+        "main__input--confirm-password"
+      ).value;
+      {
+        newPassword == confirmPassword
+          ? handlePut(5, {
+              password: newPassword,
+              checkPassword: confirmPassword,
+            })
+              .then((data) => {
+                console.log(data);
+                alert("비밀번호 변경이 완료되었습니다.");
+              })
+              .catch((error) => console.log(error))
+          : alert(
+              "비밀번호가 일치하지 않습니다. 다시 한번 확인 후 비밀번호를 입력해 주세요."
+            );
+      }
     });
   }
 }
