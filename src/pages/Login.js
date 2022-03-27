@@ -9,6 +9,7 @@ import AuthImgBtns from "../components/AuthImgBtns";
 import handleTabImage from "../utils/handleTabImage";
 import handleTabClass from "../utils/handleTabClass";
 import { saveLogin } from "../utils/cookies";
+import { historyRouterPush } from "../utils/routers";
 
 export default class Login extends BasicComponent {
   setup() {
@@ -17,6 +18,7 @@ export default class Login extends BasicComponent {
       info: {
         id: "",
         password: "",
+        idx: "",
       },
     };
   }
@@ -81,13 +83,14 @@ export default class Login extends BasicComponent {
     new AuthImgBtns(authLoginSns, {});
   }
 
-  infoItem(id, password) {
+  infoItem(id, password, idx) {
     const { info, isIndividual } = this.state;
     this.setState({
       isIndividual: isIndividual,
       info: {
         id: id,
         password: password,
+        idx: idx,
       },
     });
     console.log(this.state.info);
@@ -118,4 +121,6 @@ export default class Login extends BasicComponent {
     handleTabImage(this.state.isIndividual);
     handleTabClass("enterprise");
   }
+
+  setEvent() {}
 }

@@ -21,9 +21,9 @@ export default class App extends BasicComponent {
         ? new Login(routerPage, {})
         : currentLink == "/findPassword"
         ? new FindPassword(routerPage, {})
-        : currentLink == "/mainPage"
-        ? new MainPage(routerPage, {})
-        : new FindPassword(routerPage, {});
+        : // : currentLink == "/mainPage"
+          // ? new MainPage(routerPage, {})
+          new FindPassword(routerPage, {});
     }
 
     const passwordBtn = this.target.querySelector(".footer__btn--find-pw");
@@ -45,7 +45,6 @@ export default class App extends BasicComponent {
     window.onpopstate = function (e) {
       //history.back();
       window.location.reload();
-      e.state ? console.log(`${JSON.stringify(e.state)}`) : "";
     };
   }
 }

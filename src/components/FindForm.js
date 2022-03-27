@@ -102,6 +102,7 @@ export default class FindHeader extends BasicComponent {
   setEvent() {
     const { findPasswordInfo } = this.props;
     let currentLink;
+    let idx;
 
     this.addEvent("click", ".main__radio--phone", (e) => {
       const pathName = e.target.getAttribute("route");
@@ -130,8 +131,6 @@ export default class FindHeader extends BasicComponent {
     this.addEvent("click", ".main__radio--temp", (e) => {
       handleRouter(e, ".main__input-wrapper");
     });
-
-    let idx;
 
     this.addEvent("click", ".main__input-btn--auth", (e) => {
       let num = document.querySelector("#main__input--certification");

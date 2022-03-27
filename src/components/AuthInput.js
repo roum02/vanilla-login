@@ -1,6 +1,7 @@
 import BasicComponent from "./BasicComponent";
 import clickBodyEvent from "../utils/clickBodyEvent";
 import { handlePost } from "../api";
+import { historyRouterPush } from "../utils/routers";
 
 export default class AuthInput extends BasicComponent {
   template() {
@@ -11,16 +12,17 @@ export default class AuthInput extends BasicComponent {
     <div class="auth__input-box auth__input-box--pw">
         <input type="password" id="auth__input-pw" class="auth__input" placeholder="비밀번호" />
     </div>   
-        <button type="button" class="auth__login-btn">로그인</button>
+        <button type="button" class="auth__login-btn" route="/mainPage">로그인</button>
     `;
   }
 
   setEvent() {
     const { infoItem } = this.props;
 
-    this.addEvent("click", ".auth__login-btn", () => {
+    this.addEvent("click", ".auth__login-btn", (e) => {
       const id = document.getElementById("auth__input-id").value;
       const password = document.getElementById("auth__input-pw").value;
+      const pathName = e.target.getAttribute("route");
 
       {
         infoItem(id, password)
@@ -31,7 +33,8 @@ export default class AuthInput extends BasicComponent {
               .then((data) => {
                 console.log(data);
                 alert("개인회원으로 로그인 되었습니다. ");
-                infoItem(id, password);
+                infoItem(id, password, data.data.id);
+                historyRouterPush(pathName, ".body__login-wrapper");
               })
               .catch((error) => console.log(error))
           : handlePost("auth/company/login", {
@@ -42,7 +45,7 @@ export default class AuthInput extends BasicComponent {
               .then((data) => {
                 console.log(data);
                 alert("기업회원으로 로그인 되었습니다. ");
-                infoItem(id, password);
+                infoItem(id, password, data.data.id);
               })
               .catch((error) => console.log(error));
       }
