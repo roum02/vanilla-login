@@ -2,7 +2,6 @@ import "../src/assets/scss/main.scss";
 import BasicComponent from "./components/BasicComponent";
 import Login from "./pages/Login";
 import FindPassword from "./pages/FindPassword";
-import FindNewPassword from "./components/FindNewPassword";
 import { saveLogin, getLogin } from "./utils/cookies";
 import MainPage from "./pages/MainPage";
 

@@ -1,7 +1,6 @@
 import BasicComponent from "../components/BasicComponent";
 import FindHeader from "../components/FindHeader";
 import FindForm from "../components/FindForm";
-import FindNewPassword from "../components/FindNewPassword";
 import ChoiceBtn from "../components/ChoiceBtn";
 import handleTabClass from "../utils/handleTabClass";
 import { handleNoResPost, handlePost } from "../api";
@@ -56,7 +55,6 @@ export default class FindPassword extends BasicComponent {
     //     : "";
     // }
 
-    // 임시
     new FindForm(formInput, {
       findPasswordInfo: findPasswordInfo.bind(this),
     });
