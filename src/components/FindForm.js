@@ -141,7 +141,6 @@ export default class FindHeader extends BasicComponent {
       let name;
       let email;
       let phone;
-      //let idx;
 
       {
         currentLink == "/findPassword"
@@ -154,28 +153,43 @@ export default class FindHeader extends BasicComponent {
               userPhoneNumber: `010${phone}`,
             })
               .then((data) => {
+                alert(
+                  "휴대폰으로 인증번호가 발송되었습니다. 4분 내 인증번호를 입력해 주세요."
+                );
+                console.log(data);
                 idx = data.data.id;
-                //findPasswordInfo(id, name, phone, idx);
               })
-              .catch((error) => console.log(error)))
+              .catch((error) => {
+                alert(
+                  "회원가입 시 회원정보에 등록한 이름, 이메일 주소와 동일하게 입력하셔야 인증번호를 받을 수 있습니다."
+                );
+                console.log(error);
+              }))
           : currentLink == "/findEmail"
           ? ((id = document.getElementById("input__id--email").value),
             (name = document.getElementById("input__name--email").value),
             (email = document.getElementById("input__email--email").value),
             handlePost("auth/company/sendEmail", {
-              // userId: id,
-              // userName: name,
-              // email: email,
-              userId: "company5",
-              userName: "company5",
-              email: "dmswl7850@gmail.com",
+              userId: id,
+              userName: name,
+              email: email,
+              // userId: "company5",
+              // userName: "company5",
+              // email: "dmswl7850@gmail.com",
             })
               .then((data) => {
+                alert(
+                  "이메일로 인증번호가 발송되었습니다. 4분 내 인증번호를 입력해 주세요."
+                );
                 console.log(data);
                 idx = data.data.id;
-                //findPasswordInfo(id, name, email);
               })
-              .catch((error) => console.log(error)))
+              .catch((error) => {
+                alert(
+                  "회원가입 시 회원정보에 등록한 이름, 이메일 주소와 동일하게 입력하셔야 인증번호를 받을 수 있습니다."
+                );
+                console.log(error);
+              }))
           : "";
       }
     });
@@ -195,27 +209,29 @@ export default class FindHeader extends BasicComponent {
                 .value,
             }
               .then(() => {
-                window.history.pushState(
-                  {},
-                  pathName,
-                  window.location.origin + pathName
-                );
-                window.location.reload();
+                alert("인증되었습니다.");
+                handleRouter(e, ".main__form-wrapper");
               })
-              .catch((error) => console.log(error))
+              .catch((error) => {
+                alert("인증번호가 동일하지 않습니다.");
+                console.log(error);
+              })
           )
         : currentLink == "/findEmail"
         ? handleNoResPost("auth/common/check/sendEmail", {
-            email: "dmswl7850@gmail.com",
-            code: "crSXh23L",
-            //email: document.getElementById("input__email--email").value,
-            //code: document.getElementById("input__certification--email").value,
+            // email: "dmswl7850@gmail.com",
+            // code: "crSXh23L",
+            email: document.getElementById("input__email--email").value,
+            code: document.getElementById("input__certification--email").value,
           })
             .then(() => {
-              //findPasswordInfo(idx);
+              alert("인증되었습니다.");
               handleRouter(e, ".main__form-wrapper");
             })
-            .catch((error) => console.log(error))
+            .catch((error) => {
+              alert("인증번호가 동일하지 않습니다.");
+              console.log(error);
+            })
         : "";
     });
 
@@ -235,6 +251,8 @@ export default class FindHeader extends BasicComponent {
               .then((data) => {
                 console.log(data);
                 alert("비밀번호 변경이 완료되었습니다.");
+                window.history.pushState({}, "", window.location.origin);
+                window.location.reload();
               })
               .catch((error) => console.log(error))
           : alert(
