@@ -10,6 +10,7 @@ import handleTabImage from "../utils/handleTabImage";
 import handleTabClass from "../utils/handleTabClass";
 import { saveLogin } from "../utils/cookies";
 import { historyRouterPush } from "../utils/routers";
+import { handlePost, handlePut } from "../api";
 
 export default class Login extends BasicComponent {
   setup() {
@@ -19,6 +20,8 @@ export default class Login extends BasicComponent {
         id: "",
         password: "",
         idx: "",
+        accessToken: "",
+        refreshToken: "",
       },
     };
   }
@@ -85,7 +88,7 @@ export default class Login extends BasicComponent {
     new AuthImgBtns(authLoginSns, {});
   }
 
-  infoItem(id, password, idx) {
+  infoItem(id, password, idx, accessToken, refreshToken) {
     const { info, isIndividual } = this.state;
     this.setState({
       isIndividual: isIndividual,
@@ -93,6 +96,8 @@ export default class Login extends BasicComponent {
         id: id,
         password: password,
         idx: idx,
+        accessToken: accessToken,
+        refreshToken: refreshToken,
       },
     });
     console.log(this.state.info);
@@ -124,5 +129,27 @@ export default class Login extends BasicComponent {
     handleTabClass("enterprise");
   }
 
-  setEvent() {}
+  setEvent() {
+    this.addEvent("click", ".main__content-btn--complete", () => {
+      console.log(this.state.info);
+      let accessToken = this.state.info.accessToken;
+      let refreshToken = this.state.info.refreshToken;
+      handlePost(
+        "auth/common/reissue",
+        {
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+        },
+        {
+          Authorization: `Bearer ${accessToken}`,
+        }
+      )
+        .then((data) => {
+          console.log(data);
+          accessToken = data.data.accessToken;
+          refreshToken = data.data.refreshToken;
+        })
+        .catch((error) => console.log(error));
+    });
+  }
 }

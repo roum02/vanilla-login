@@ -69,8 +69,10 @@ export default class AuthInput extends BasicComponent {
                 console.log(data);
                 const idx = data.data.id;
                 const nickname = data.data.nickname;
+                const accessToken = data.data.accessToken;
+                const refreshToken = data.data.refreshToken;
                 alert("개인회원으로 로그인 되었습니다. ");
-                infoItem(id, password, idx);
+                infoItem(id, password, idx, accessToken, refreshToken);
                 window.history.pushState(
                   {},
                   pathName,
