@@ -38,14 +38,14 @@ export default class AuthInput extends BasicComponent {
     <p class="main__content-subtitle">
     별명을 바꾸고 싶다면 아래 버튼을
     클릭해주세요.</p>
-    <div class="main__input-description">
-      <div class="main__input-item">
-        <div class="main__input-title">별명</div>
-        <div class="main__input-box">
-            <input class="main__input--fulled main__input" 
-            placeholder="별명입력"
-            id="input__id--nickname">
-        </div>
+    <div class="main__input-description form-width">
+        <div class="main__input-item">
+          <div class="main__input-title">별명</div>
+          <div class="main__input-box">
+              <input class="main__input--fulled main__input" 
+              placeholder="별명입력"
+              id="input__id--nickname">
+          </div>
       </div>
     </div>
     <div class="main__content-btn-wrapper">
